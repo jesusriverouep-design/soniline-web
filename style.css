@@ -1,0 +1,617 @@
+:root {
+    --bg-fondo: #050505;
+    --bg-tarjeta: #121212;
+    --bg-nav: #0a0a0a;
+    --texto-principal: #ffffff;
+    --texto-secundario: #aaaaaa;
+    --azul-soniline: #1d4db5;
+    --borde: #222222;
+    --whatsapp-color: #25d366;
+}
+
+[data-theme="light"] {
+    --bg-fondo: #f0f2f5;
+    --bg-tarjeta: #ffffff;
+    --bg-nav: #ffffff;
+    --texto-principal: #1a1a1a;
+    --texto-secundario: #555555;
+    --borde: #dddddd;
+}
+
+* { 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; 
+}
+
+body {
+    margin: 0; 
+    font-family: sans-serif;
+    background-color: var(--bg-fondo); 
+    color: var(--texto-principal);
+    transition: background 0.3s; 
+    cursor: default !important; 
+    user-select: none;
+}
+
+button, a { cursor: pointer !important; }
+
+/* --- Header & Nav --- */
+.main-header { 
+    text-align: center; 
+    padding: 20px; 
+    border-bottom: 2px solid var(--azul-soniline); 
+}
+
+.main-logo { 
+    max-width: 250px; 
+    width: 70%; 
+}
+
+
+
+.cat-btn {
+    background: transparent; 
+    color: var(--texto-secundario);
+    border: 1px solid var(--borde); 
+    padding: 7px 18px; 
+    border-radius: 20px;
+    font-weight: bold; 
+    white-space: nowrap; 
+    transition: 0.2s; 
+    font-size: 0.85rem;
+}
+
+.cat-btn.active { 
+    background: var(--azul-soniline); 
+    color: white; 
+    border-color: var(--azul-soniline); 
+}
+
+/* --- Grid & Cards --- */
+.container { 
+    padding: 20px; 
+    max-width: 1200px; 
+    margin: auto; 
+}
+
+.productos-grid {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(160px, 200px));
+    gap: 15px; 
+    justify-content: center;
+}
+
+.card {
+    background: var(--bg-tarjeta);
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid var(--borde);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.card:active {
+    transform: scale(0.98);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Esto es la clave */
+    object-fit: cover;   /* Esto evita que la imagen se estire feo */
+    border-radius: 8px;
+    background: #1a1a1a;
+}
+
+.card h3 { 
+    font-size: 0.9rem; 
+    margin: 8px 0; 
+    color: var(--texto-principal);
+    font-weight: 600;
+}
+
+.price {
+    color: var(--azul-soniline);
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 5px 0;
+    display: block;
+}
+
+.btn-add {
+    background: var(--azul-soniline); 
+    color: white; 
+    border: none;
+    width: 100%; 
+    padding: 10px; 
+    border-radius: 6px; 
+    font-weight: bold;
+    margin-top: auto;
+}
+
+/* --- Floats --- */
+.cart-float, .whatsapp-float {
+    position: fixed; 
+    width: 55px; 
+    height: 55px; 
+    border-radius: 50% !important;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4); 
+    z-index: 1000;
+}
+
+.cart-float { bottom: 20px; right: 20px; background: var(--azul-soniline); color: white; }
+.whatsapp-float { bottom: 20px; left: 20px; background: var(--whatsapp-color); }
+.wa-icon img { width: 28px; height: 28px; }
+
+#cart-count {
+    position: absolute; top: 2px; right: 2px; background: #ff3b30;
+    width: 18px; height: 18px; border-radius: 50%; font-size: 11px;
+    display: flex; align-items: center; justify-content: center; font-weight: bold;
+}
+
+/* --- Otros --- */
+.theme-switch {
+    position: fixed; top: 15px; right: 15px; width: 40px; height: 40px;
+    border-radius: 50%; background: var(--bg-tarjeta); border: 1px solid var(--borde);
+    display: flex; align-items: center; justify-content: center; z-index: 1100;
+}
+
+#category-title {
+    text-align: center;
+    margin: 20px 0 25px 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--texto-principal);
+}
+
+/* --- Stock Styles --- */
+.agotado {
+    filter: grayscale(1);
+    opacity: 0.6;
+    position: relative;
+}
+
+/* Badge Circular de Fuego (Popular) */
+.badge-popular {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff4500; /* Naranja fuego */
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    z-index: 10;
+    box-shadow: 0 0 12px rgba(255, 69, 0, 0.5);
+    animation: pulse-fire 2s infinite;
+}
+
+@keyframes pulse-fire {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Badge NEW con Animación de Pulso Eléctrico */
+.badge-new-pro {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, #0077ff, #00d4ff); /* Degradado eléctrico */
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    z-index: 10;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0, 119, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    /* Animación similar al popular pero estilo "eléctrico" */
+    animation: pulso-electrico 1.5s infinite ease-in-out;
+}
+
+/* Animación de pulso para el NEW */
+@keyframes pulso-electrico {
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 119, 255, 0.6); }
+    50% { transform: scale(1.08); box-shadow: 0 0 20px rgba(0, 212, 255, 0.9); }
+    100% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 119, 255, 0.6); }
+}
+
+/* --- MEJORA PARA PC (Pantallas mayores a 1024px) --- */
+@media (min-width: 1024px) {
+    .badge-new-pro {
+        padding: 6px 16px;
+        font-size: 0.85rem; /* Más grande en PC */
+    }
+    
+    .badge-new-pro span {
+        font-size: 1.1rem; /* El rayo específicamente más grande */
+    }
+}
+
+/* El badge de agotado estilo cinta que ya tenías */
+.badge-agotado-premium {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    padding: 5px 40px;
+    background: #444;
+    color: white;
+    transform: rotate(45deg);
+    font-size: 0.6rem;
+    font-weight: bold;
+    z-index: 100 !important; /* Súbelo a 100 para que nada lo tape */
+}
+
+/* PRECIO TACHADO (Estilo Amazon) */
+.price-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.old-price {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 0.85rem;
+}
+
+.current-price {
+    color: var(--azul-soniline);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+
+/* --- Modal --- */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); }
+.modal-content { background: var(--bg-tarjeta); margin: 15% auto; padding: 20px; width: 90%; max-width: 400px; border-radius: 15px; position: relative; border: 1px solid var(--borde); }
+/* Contenedor de cada producto en el carrito */
+.item-carrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Contenedor de los botones + y - */
+.controles-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #222;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+.btn-qty {
+    background: none;
+    border: none;
+    color: var(--azul-soniline);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-numero {
+    color: white;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.btn-eliminar-item {
+    color: #ff4444;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.btn-enviar-total { background: var(--whatsapp-color); color: white; border: none; width: 100%; padding: 14px; border-radius: 10px; font-weight: bold; margin-top: 15px; }
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .categories-nav {
+    display: flex;
+    overflow-x: auto; /* Permite deslizar a los lados si hay muchas */
+    white-space: nowrap;
+    padding: 10px;
+    gap: 10px;
+    scrollbar-width: none; /* Oculta la barra de scroll en Firefox */
+}
+
+.categories-nav::-webkit-scrollbar {
+    display: none; /* Oculta la barra de scroll en Chrome/Safari */
+}
+
+.categories-nav button {
+    flex: 0 0 auto; /* Evita que los botones se encojan */
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: var(--bg-tarjeta);
+    border: 1px solid var(--azul-soniline);
+    color: var(--texto-principal);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .card { padding: 10px; }
+    .card h3 { font-size: 0.85rem; }
+    .price { font-size: 1.1rem; }
+}
+
+#inputBusqueda:focus {
+    outline: none;
+    border-color: var(--azul-soniline) !important;
+    box-shadow: 0 0 8px rgba(29, 77, 181, 0.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.4s ease forwards;
+}   
+
+/* La X de cerrar el modal principal */
+/* Botón de cerrar (X) universal */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5); /* Fondo para que se vea sobre cualquier imagen */
+    color: white !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 100; /* Siempre por encima de todo */
+    border: 2px solid white;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Ajuste específico para móviles */
+@media (max-width: 768px) {
+    .close-modal {
+        top: 10px;
+        right: 10px;
+        background: var(--azul-soniline); /* O el color de tu marca para que resalte */
+        box-shadow: 0 2px 10px rgba(255, 0, 0, 0.3);
+    }
+}
+
+.close-modal:hover {
+    background: #cc0000;
+    transform: scale(1.1);
+}
+
+/* El botón de eliminar producto dentro de la lista */
+.btn-eliminar {
+    background: none;
+    border: none;
+    color: #ff4444;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+/* LAS FLECHAS (ESTILO INSTAGRAM) */
+.btn-slider:hover { background: rgba(0, 0, 0, 0.8); }
+.btn-slider.prev { left: 10px; }
+.btn-slider.next { right: 10px; }
+.btn-slider {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+/* EL WRAPPER (LA TIRA DE FOTOS) */
+#slider-wrapper {
+    display: flex; /* Pone las fotos una al lado de la otra en una tira larga */
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease-in-out; /* Hace que el movimiento sea suave */
+}
+
+/* LAS IMÁGENES DENTRO DEL SLIDER */
+#slider-wrapper img {
+    width: 100%; /* Cada foto ocupa el 100% del ancho del marco */
+    flex-shrink: 0; /* Evita que las fotos se aplasten */
+    object-fit: contain;
+    aspect-ratio: 1/1;
+}
+
+/* Ajuste para que el modal de detalles permita scroll */
+#modal-detalles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none; /* Se activa por JS */
+    overflow-y: auto; /* PERMITE SCROLL VERTICAL */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Evita que el fondo de la página se mueva cuando el modal está abierto */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Asegura que en móviles el contenido no se pierda */
+@media (max-width: 768px) {
+    #modal-detalles .modal-content {
+        width: 95%;
+        margin: 10px auto;
+    }
+}
+
+/* Arreglo Maestro para Modal Detalles */
+#modal-detalles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 9999;
+    overflow-y: auto; /* Habilita el scroll de toda la pantalla */
+    display: none;
+    padding: 20px 0;
+}
+
+.detalle-pro {
+    background: var(--bg-tarjeta) !important;
+    max-width: 900px !important;
+    width: 95% !important;
+    margin: 20px auto !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.detalle-flex-layout {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* CONTENEDOR DEL SLIDER (EL MARCO) */
+.detalle-galeria-seccion {
+    flex: 1;
+    min-width: 300px;
+    background: #000;
+    position: relative;
+    overflow: hidden; /* ESTO ES VITAL: Esconde las fotos que no se están viendo */
+    display: flex;
+    align-items: center;
+}
+
+/* Asegura que las specs se vean en cualquier modo */
+/* LISTA DE ESPECIFICACIONES */
+#detalles-specs li { 
+    border-bottom: 1px solid var(--borde); 
+    padding: 12px 0; 
+    display: flex; 
+    justify-content: space-between; 
+}
+
+#detalles-specs span:first-child { 
+    color: var(--texto-secundario) !important; 
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+#detalles-specs span:last-child { 
+    color: var(--texto-principal) !important; 
+    font-weight: bold; 
+}
+
+.detalle-info-seccion { 
+    flex: 1; 
+    min-width: 300px; 
+    padding: 30px; 
+}
+
+.detalles-meta-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+#detalles-marca {
+    background: var(--azul-soniline);
+    color: rgb(255, 255, 255);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 900;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+#detalles-modelo {
+    color: var(--texto-secundario);
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+#detalles-nombre { 
+    font-size: 1.8rem; 
+    margin: 5px 0; 
+    color: var(--texto-principal) !important; 
+    line-height: 1.2;
+}
+
+#detalles-precio { 
+    color: var(--azul-soniline); 
+    font-size: 2rem; 
+    font-weight: bold; 
+    margin: 15px 0; 
+}
+
+.specs-container h4 {
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    color: var(--texto-secundario);
+}
+
+.btn-add-grande {
+    width: 100%;
+    padding: 18px;
+    background: var(--azul-soniline);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .detalle-flex-layout { flex-direction: column; }
+    .detalle-info-seccion { padding: 20px; }
+}
