@@ -21,9 +21,9 @@ const productos = [
     },
     {
         id: 2,
-        modelo: "PS-S6",
+        modelo: "PS-S5",
         marca: "Power Su",
-        nombre: "Par de medio rangos\"",
+        nombre: "Par de medio rangos 6.5/"",
         precio: 45,
         precioAnterior: 60,
         status: "popular",
