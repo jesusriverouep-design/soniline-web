@@ -141,13 +141,14 @@ function abrirModalCarrito() {
     document.getElementById('modal-carrito').style.display = 'block';
 }
 
-function cerrarModal(idModal = null) {
-    if (idModal) {
-        // Si le pasamos un ID, cerramos solo ese modal
-        document.getElementById(idModal).style.display = 'none';
-    } else {
-        // Si no le pasamos nada (botón X), cerramos todos
-        document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+function cerrarModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.style.display = 'none';
+        // Esto es muy importante para devolver el scroll al usuario
+        document.body.classList.remove('modal-open');
+        document.body.style.position = '';
+        document.body.style.width = '';
     }
 }
 
