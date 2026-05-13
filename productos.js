@@ -6,7 +6,7 @@ const productos = [
         nombre: "Par de medio rangos\"",
         precio: 45,
         //precioAnterior: 45,
-        status: "popular",
+        status: "nuevo",
         stock: true,
         categoria: "MEDIOS 6.5",
         imagenes: ["img/PS-S6-1.png", "img/PS-S6-2.png", "img/PS-S6-3.png"],
