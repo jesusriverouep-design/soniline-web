@@ -18,7 +18,7 @@ const productos = [
             "Sensibilidad": "95dB",
             "Frecuencia": "120Hz - 10kHz"
         }
-    }
+    },
     {
         id: 2,
         modelo: "PS-S6",
@@ -38,7 +38,7 @@ const productos = [
             "Sensibilidad": "95dB",
             "Frecuencia": "120Hz - 10kHz"
         }
-    }
+    },
       {
         id: 3,
         modelo: "PS-S6",
